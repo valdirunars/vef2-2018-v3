@@ -10,6 +10,10 @@ const {
 
 const router = express.Router();
 
+router.get('/', (req, res) => {
+  res.send('hello world');
+});
+
 function catchErrors(fn) {
   return (req, res, next) => fn(req, res, next).catch(next);
 }
