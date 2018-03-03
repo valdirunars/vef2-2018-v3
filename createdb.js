@@ -1,10 +1,6 @@
-require('dotenv').config();
-
 const fs = require('fs');
 const util = require('util');
-const database = require('./database')
-
-const connectionString = process.env.DATABASE_URL;
+const database = require('./database');
 
 const readFileAsync = util.promisify(fs.readFile);
 

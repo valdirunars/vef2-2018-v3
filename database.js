@@ -1,11 +1,14 @@
+require('dotenv').config();
 const { Client } = require('pg');
+
+const connectionString = `${process.env.DATABASE_URL}?ssl=true`;
 
 exports.query = async (query, params) => {
   const client = new Client({ connectionString });
   await client.connect();
 
   try {
-    const result = database.query(query, params);
+    const result = await client.query(query, params);
 
     const { rows } = result;
     return rows;
@@ -13,6 +16,6 @@ exports.query = async (query, params) => {
     console.error('Error running query');
     throw err;
   } finally {
-    client.end();
+    await client.end();
   }
 };
